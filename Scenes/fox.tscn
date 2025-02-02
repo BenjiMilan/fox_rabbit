@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://r0faf3owq0yq"]
+
+[ext_resource type="Script" path="res://Scripts/fox.gd" id="1_333c6"]
+[ext_resource type="PackedScene" uid="uid://bu7ehsosqmrui" path="res://Scenes/tile_map_layer.tscn" id="1_do7ii"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pdwwg"]
+size = Vector2(28, 24)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7tj48"]
+radius = 1012.11
+
+[node name="Fox" type="Area2D" groups=["foxes"]]
+script = ExtResource("1_333c6")
+
+[node name="BirthTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_pdwwg")
+
+[node name="TileMapLayer" parent="." instance=ExtResource("1_do7ii")]
+modulate = Color(0.98503, 0.616586, 0.408996, 1)
+position = Vector2(-16, -16)
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 31, 0, 7, 0, 0, 0)
+
+[node name="HungerTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="SightCircle" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SightCircle"]
+shape = SubResource("CircleShape2D_7tj48")
+
+[node name="WanderTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true

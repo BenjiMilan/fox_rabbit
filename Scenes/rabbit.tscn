@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://dsc8cqi6upama"]
+
+[ext_resource type="Script" path="res://Scripts/rabbit.gd" id="1_8vj43"]
+[ext_resource type="PackedScene" uid="uid://bu7ehsosqmrui" path="res://Scenes/tile_map_layer.tscn" id="2_qwfw7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pdwwg"]
+size = Vector2(26, 28)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3g01w"]
+radius = 314.002
+
+[node name="Rabbit" type="Area2D" groups=["rabbits"]]
+script = ExtResource("1_8vj43")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_pdwwg")
+
+[node name="SightCircle" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SightCircle"]
+shape = SubResource("CircleShape2D_3g01w")
+
+[node name="HungerTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="WanderTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="BirthTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="TileMapLayer" parent="." instance=ExtResource("2_qwfw7")]
+position = Vector2(-16, -16)
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 26, 0, 7, 0, 0, 0)

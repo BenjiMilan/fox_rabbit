@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0nqkdo5ur320"]
+
+[ext_resource type="Script" path="res://Scripts/camera.gd" id="1_da6re"]
+[ext_resource type="Script" path="res://Scripts/game.gd" id="1_gluih"]
+[ext_resource type="PackedScene" uid="uid://cxa35dgc3hl24" path="res://Scenes/pop_graph.tscn" id="3_3txo8"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_gluih")
+
+[node name="Map" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2500.0
+offset_top = -2500.0
+offset_right = 2500.0
+offset_bottom = 2500.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.212931, 0.405799, 0.1863, 1)
+
+[node name="Coop" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -697.0
+offset_top = -669.0
+offset_right = 703.0
+offset_bottom = 731.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.269143, 0.215898, 0.0863994, 1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("1_da6re")
+
+[node name="PopGraph" parent="Camera2D" instance=ExtResource("3_3txo8")]
+position = Vector2(-396, -236)
+scale = Vector2(0.75, 0.75)
+
+[node name="BerryTimer" type="Timer" parent="."]
+wait_time = 0.13
+autostart = true

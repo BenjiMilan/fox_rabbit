@@ -1,0 +1,101 @@
+[gd_scene load_steps=8 format=3 uid="uid://cxa35dgc3hl24"]
+
+[ext_resource type="Script" path="res://Scripts/graph.gd" id="1_5htjs"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xnk00"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e0eot"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ukyh1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cckrn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bfj5l"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nkksl"]
+
+[node name="PopGraph" type="Node2D"]
+script = ExtResource("1_5htjs")
+
+[node name="Axis" type="Line2D" parent="."]
+points = PackedVector2Array(100, 50, 100, 550, 1000, 550)
+
+[node name="PopText" type="TextEdit" parent="."]
+offset_left = 40.0
+offset_top = 257.0
+offset_right = 144.0
+offset_bottom = 299.0
+rotation = 1.5708
+text = "Population"
+
+[node name="TimeText" type="TextEdit" parent="."]
+offset_left = 519.0
+offset_top = 569.0
+offset_right = 623.0
+offset_bottom = 611.0
+text = "Time"
+
+[node name="PopNumbers" type="Control" parent="."]
+custom_minimum_size = Vector2(1152, 648)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextEdit" type="TextEdit" parent="PopNumbers"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 35.0
+offset_right = 120.0
+offset_bottom = 75.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_xnk00")
+text = "250"
+
+[node name="TextEdit2" type="TextEdit" parent="PopNumbers"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 135.0
+offset_right = 120.0
+offset_bottom = 175.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_e0eot")
+text = "200"
+
+[node name="TextEdit3" type="TextEdit" parent="PopNumbers"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 235.0
+offset_right = 120.0
+offset_bottom = 275.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ukyh1")
+text = "150"
+
+[node name="TextEdit4" type="TextEdit" parent="PopNumbers"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 335.0
+offset_right = 120.0
+offset_bottom = 375.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cckrn")
+text = "100	"
+
+[node name="TextEdit5" type="TextEdit" parent="PopNumbers"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 435.0
+offset_right = 120.0
+offset_bottom = 475.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_bfj5l")
+text = "50"
+
+[node name="TextEdit6" type="TextEdit" parent="PopNumbers"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 535.0
+offset_right = 120.0
+offset_bottom = 575.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_nkksl")
+text = "0"
+
+[node name="TimeSincePoint" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
