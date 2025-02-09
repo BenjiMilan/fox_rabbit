@@ -83,6 +83,7 @@ func _on_sight_exited(body):
 
 func _hunt(delta):
 	speed = HUNT_SPEED
+	$AnimationPlayer.play("Run")
 	direction = _get_prey_dir()
 	global_position += direction * speed * delta
 
@@ -90,6 +91,7 @@ func _seek_mate(delta):
 	if hunger < 7:
 		current_state = "idle"
 	speed = WALK_SPEED
+	$AnimationPlayer.play("Walk")
 	direction = _get_mate_dir()
 	global_position += direction * speed * delta
 
@@ -111,6 +113,7 @@ func _start_wandering():
 func _wander(delta):
 	if target_position:
 		speed = WALK_SPEED
+		$AnimationPlayer.play("Walk")
 		direction = (target_position - global_position).normalized()
 		global_position += direction * speed * delta
 		
@@ -118,6 +121,7 @@ func _wander(delta):
 			$WanderTimer.start()
 			target_position = null
 			current_state = "idle"
+			$AnimationPlayer.play("RESET")
 
 func _lose_hunger():
 	hunger -= 1

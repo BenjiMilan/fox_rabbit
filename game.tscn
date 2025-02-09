@@ -38,10 +38,21 @@ color = Color(0.269143, 0.215898, 0.0863994, 1)
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("1_da6re")
 
-[node name="PopGraph" parent="Camera2D" instance=ExtResource("3_3txo8")]
-position = Vector2(-396, -236)
-scale = Vector2(0.75, 0.75)
-
 [node name="BerryTimer" type="Timer" parent="."]
 wait_time = 0.13
 autostart = true
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="PopGraph" parent="UI" groups=["graph"] instance=ExtResource("3_3txo8")]
+position = Vector2(204, 98)
+scale = Vector2(0.75, 0.75)
+
+[node name="Button" type="Button" parent="UI"]
+offset_left = 13.0
+offset_top = 602.0
+offset_right = 115.0
+offset_bottom = 633.0
+text = "Show Graph"
+
+[connection signal="pressed" from="UI/Button" to="." method="_on_button_pressed"]

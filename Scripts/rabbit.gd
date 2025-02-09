@@ -66,16 +66,19 @@ func _evaluate_state():
 func _flee(delta):
 	speed = FLEE_SPEED
 	direction = _get_flee_dir()
+	$AnimationPlayer.play("Run")
 	global_position += direction * speed * delta
 
 func _seek_food(delta):
 	speed = WALK_SPEED
 	direction = _get_food_dir()
+	$AnimationPlayer.play("Walk")
 	global_position += direction * speed * delta
 
 func _seek_mate(delta):
 	speed = WALK_SPEED
 	direction = _get_mate_dir()
+	$AnimationPlayer.play("Walk")
 	global_position += direction * speed * delta
 
 func _start_wandering():
@@ -83,6 +86,7 @@ func _start_wandering():
 	if $WanderTimer.is_stopped():
 		current_state = "wandering"
 		wander_position = global_position
+		$AnimationPlayer.play("Walk")
 		var new_target_position = _get_random_offset(WANDER_RANGE) + wander_position
 		var clamp_target_position = Vector2(
 			clamp(new_target_position.x, -2500, 2500),
@@ -99,6 +103,7 @@ func _wander(delta):
 		if global_position.distance_to(target_position) < 5.0:
 			$WanderTimer.start()
 			target_position = null
+			$AnimationPlayer.play("RESET")
 			current_state = "idle"
 
 func _on_sight_entered(body):

@@ -24,6 +24,7 @@ Global="*res://global.gd"
 rabbits=""
 berries=""
 foxes=""
+graph=""
 
 [input]
 

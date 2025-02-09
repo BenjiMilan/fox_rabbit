@@ -1,33 +1,80 @@
-[gd_scene load_steps=5 format=3 uid="uid://r0faf3owq0yq"]
+[gd_scene load_steps=9 format=3 uid="uid://r0faf3owq0yq"]
 
 [ext_resource type="Script" path="res://Scripts/fox.gd" id="1_333c6"]
-[ext_resource type="PackedScene" uid="uid://bu7ehsosqmrui" path="res://Scenes/tile_map_layer.tscn" id="1_do7ii"]
+[ext_resource type="Texture2D" uid="uid://ift3qm03j4ik" path="res://Assets/colored-transparent.png" id="2_kd4lm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pdwwg"]
-size = Vector2(28, 24)
+size = Vector2(31, 27)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7tj48"]
 radius = 1012.11
+
+[sub_resource type="Animation" id="Animation_65gg8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ov4xp"]
+resource_name = "Walk_2"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.698132, 0.0, -0.698132, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_k3jnj"]
+resource_name = "Walk"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.349066, 0.0, -0.349066, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pdfft"]
+_data = {
+"RESET": SubResource("Animation_65gg8"),
+"Run": SubResource("Animation_ov4xp"),
+"Walk": SubResource("Animation_k3jnj")
+}
 
 [node name="Fox" type="Area2D" groups=["foxes"]]
 script = ExtResource("1_333c6")
 
 [node name="BirthTimer" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 15.0
 one_shot = true
 autostart = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, -1.5)
 shape = SubResource("RectangleShape2D_pdwwg")
 
-[node name="TileMapLayer" parent="." instance=ExtResource("1_do7ii")]
-modulate = Color(0.98503, 0.616586, 0.408996, 1)
-position = Vector2(-16, -16)
-scale = Vector2(2, 2)
-tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 31, 0, 7, 0, 0, 0)
-
 [node name="HungerTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 3.0
 autostart = true
 
 [node name="SightCircle" type="Area2D" parent="."]
@@ -38,3 +85,14 @@ shape = SubResource("CircleShape2D_7tj48")
 [node name="WanderTimer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("2_kd4lm")
+region_enabled = true
+region_rect = Rect2(528, 120, 16, 16)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pdfft")
+}

@@ -4,6 +4,8 @@ extends Node2D
 @export var BerryBush = preload("res://Scenes/berry_bush.tscn")
 @export var Fox = preload("res://Scenes/fox.tscn")
 
+var graph_node
+
 const INITIAL_BERRIES = 100
 const INITAL_RABBITS = 70
 const INITIAL_FOXES = 10
@@ -13,6 +15,7 @@ var map_width
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	graph_node = $UI/PopGraph
 	map_height = $Map.size.y
 	map_width = $Map.size.x
 	Global.map_size = map_height
@@ -20,7 +23,7 @@ func _ready() -> void:
 	Global.coop_origin = $Coop.position
 	
 	$BerryTimer.connect("timeout", Callable(self, "_spawn_random").bind(BerryBush))
-	$Camera2D/PopGraph.connect("count_animals", _count_animals)
+	$UI/PopGraph.connect("count_animals", _count_animals)
 	
 	for i in INITAL_RABBITS:
 		_spawn_random(Rabbit)
@@ -62,3 +65,9 @@ func spawn_fox_at_vector(vector):
 	var obj = Fox.instantiate()
 	obj.global_position = vector
 	call_deferred("add_child", obj)
+
+func _on_button_pressed() -> void:
+	if graph_node.is_visible():
+		graph_node.hide()
+	else:
+		graph_node.show()
